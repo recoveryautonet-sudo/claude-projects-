@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Юнит-Экономика PRO — калькулятор реальной прибыльности товара: импорт из Китая, производство РФ, маркетплейсы, налоги ОСНО. Работает офлайн." />
+  <meta name="theme-color" content="#4f7cff" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Юнит-Экономика PRO</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="dark">
+
+  <!-- ===== Стартовый сплэш ===== -->
+  <div id="splash" class="splash">
+    <div class="splash__logo">₽</div>
+    <div class="splash__title">Юнит-Экономика PRO</div>
+    <div class="splash__sub">Загрузка…</div>
+  </div>
+
+  <!-- ===== Верхняя панель ===== -->
+  <header class="topbar">
+    <button class="iconbtn topbar__menu" id="btnMenu" title="Меню" aria-label="Меню">☰</button>
+
+    <div class="topbar__brand">
+      <span class="brand__mark">₽</span>
+      <span class="brand__name">Юнит-Экономика&nbsp;PRO</span>
+    </div>
+
+    <div class="topbar__project">
+      <input id="projectName" class="project-name" type="text" placeholder="Название проекта"
+             title="Название проекта" autocomplete="off" spellcheck="false" />
+      <span id="saveState" class="savestate" title="Статус сохранения">сохранено</span>
+    </div>
+
+    <div class="topbar__actions">
+      <button class="btn btn--primary" id="btnInstall" hidden title="Установить приложение">📲 Установить</button>
+      <button class="btn btn--ghost" id="btnProjects" title="Список проектов">📂 Проекты</button>
+      <button class="btn btn--primary" id="btnNew" title="Новый проект">＋ Новый</button>
+      <button class="btn btn--ghost" id="btnSave" title="Сохранить (Ctrl+S)">💾 Сохранить</button>
+      <button class="iconbtn" id="btnTheme" title="Сменить тему">🌓</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- ===== Боковое меню (разделы = блоки ТЗ) ===== -->
+    <nav class="sidebar" id="sidebar" aria-label="Разделы">
+      <ul class="nav" id="navList"><!-- наполняется из JS --></ul>
+      <div class="sidebar__footer">
+        <div class="muted small">v1.0 · офлайн · данные только в этом браузере</div>
+      </div>
+    </nav>
+    <div class="sidebar__backdrop" id="sidebarBackdrop"></div>
+
+    <!-- ===== Контент раздела ===== -->
+    <main class="content" id="view" tabindex="-1"><!-- рендерится из JS --></main>
+
+    <!-- ===== Липкая панель ключевых метрик ===== -->
+    <aside class="summary" id="summary" aria-label="Ключевые показатели"><!-- из JS --></aside>
+  </div>
+
+  <!-- ===== Универсальное модальное окно ===== -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__card" role="dialog" aria-modal="true">
+      <div class="modal__head">
+        <h3 id="modalTitle">—</h3>
+        <button class="iconbtn" data-close title="Закрыть">✕</button>
+      </div>
+      <div class="modal__body" id="modalBody"></div>
+      <div class="modal__foot" id="modalFoot"></div>
+    </div>
+  </div>
+
+  <!-- ===== Тосты ===== -->
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <!-- Скрытый input для импорта JSON -->
+  <input type="file" id="importFile" accept="application/json,.json" hidden />
+
+  <script src="script.js"></script>
+</body>
+</html>
